@@ -4,10 +4,12 @@ import { ContactsNewComponent } from './contacts-new/contacts-new.component';
 import { ContactsEditComponent } from './contacts-edit/contacts-edit.component';
 import { ContactsShowComponent } from './contacts-show/contacts-show.component';
 import { ContactsService } from "app/contacts/contacts.service";
+import { CONTACT_ROUTING } from "app/contacts/contacts.router";
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    CONTACT_ROUTING
   ],
   declarations: [ContactsNewComponent, ContactsEditComponent, ContactsShowComponent],
   providers: [ContactsService]
