@@ -1,4 +1,4 @@
-import { Routes, RouterModule } from "@angular/router/router";
+import { Routes, RouterModule } from "@angular/router";
 import { ContactsShowComponent } from "app/contacts/contacts-show/contacts-show.component";
 
 const _CONTACT_ROUTES: Routes = [
