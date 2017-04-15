@@ -7,8 +7,12 @@ import { Observable } from 'rxjs/Rx';
 export class AuthGuardianService implements CanActivate {
   constructor() { }
   
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
+  canActivate(
+    route: ActivatedRouteSnapshot, 
+    state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
     throw new Error('Method not implemented.');
   }
+
+  
 
 }
