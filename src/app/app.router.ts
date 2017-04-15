@@ -6,7 +6,7 @@ const _APP_ROUTES : Routes = [
     {
         path : "contacts",
         loadChildren: "app/contacts/contacts.module#ContactsModule",
-        canActivate: AuthGuardianService
+        canActivate: [AuthGuardianService]
     }
 ];
 
