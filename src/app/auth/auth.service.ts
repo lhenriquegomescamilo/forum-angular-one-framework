@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 import { CookieService } from "angular2-cookie/services/cookies.service";
 import * as _ from "lodash";
 import { ContactsModel } from "app/models/contacts.model";
+import { ContactSession } from "app/models/contacts-session.model";
+import { ContactsService } from "app/contacts/contacts.service";
 
 @Injectable()
 export class AuthService {
@@ -12,18 +14,28 @@ export class AuthService {
   private static readonly _USER_FROM_SESSION = "user_from_session";
   private _showNavBar: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private _router: Router, private _cookierService: CookieService) { }
+  constructor(private _router: Router, private _cookierService: CookieService, private _contactService: ContactsService) { }
 
   signin(contact: ContactsModel): void {
-    if ((contact.email === 'user@email.com' || contact.email === 'usuario@email.com')
-      && contact.password === '123456') {
-      this._setUserOnSession(contact);
-      this._showEventEmitter(true);
-      this._authenticated = true;
-      this._router.navigate(["/"]);
-    } else {
-      this._authenticated = false;
-    }
+    this._contactService.auth(contact.email, contact.password).subscribe((contactSession) => {
+      console.log(contactSession);
+    }, error => {
+      console.log(error);
+      if(error.status == 401){
+        //TODO: Handle user or password incorrect 
+      } else {
+
+      }
+    });
+    // if ((contact.email === 'user@email.com' || contact.email === 'usuario@email.com')
+    //   && contact.password === '123456') {
+    //   this._setUserOnSession(contact);
+    //   this._showEventEmitter(true);
+    //   this._authenticated = true;
+    //   this._router.navigate(["/"]);
+    // } else {
+    //   this._authenticated = false;
+    // }
   }
   private _showEventEmitter(canShow: boolean): void {
     this._showNavBar.emit(canShow);

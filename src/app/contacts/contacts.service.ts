@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import {Http, Headers, Response} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { ContactsModel } from '../models/contacts.model';
+import { ContactSession } from "../models/contacts-session.model";
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -40,4 +41,10 @@ export class ContactsService {
     });
   }
 
+  auth(email: String, password: string) : Observable<ContactSession>{
+    let headers : Headers = new Headers({ email: email, password: password });
+    return this._http.post(this.contactsURL + "auth", {}, {headers : headers}).map((response) => {
+      return new ContactSession(response.headers.get("token"), response.json());
+    });
+  }
 }
