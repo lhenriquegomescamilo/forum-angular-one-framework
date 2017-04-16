@@ -9,11 +9,13 @@ import { ContactBaseComponent } from './contact-base/contact-base.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { HttpModule } from "@angular/http";
+import { HttpModule, JsonpModule } from '@angular/http';
 
 @NgModule({
   imports: [
     CommonModule,
+    HttpModule,
+    JsonpModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
