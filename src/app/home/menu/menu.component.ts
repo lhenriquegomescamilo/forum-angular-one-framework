@@ -10,9 +10,7 @@ export class MenuComponent implements OnInit {
 
   private showNavBar: boolean = false;
 
-  constructor(private _authService: AuthService) { 
-    console.log("PASSING HERE");
-  }
+  constructor(private _authService: AuthService) {}
 
   ngOnInit() {
     console.log()

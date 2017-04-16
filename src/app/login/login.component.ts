@@ -15,9 +15,7 @@ export class LoginComponent implements OnInit {
   error: boolean = false;
   errorMessage: string = "";
 
-  constructor(private _formBuilder: FormBuilder, private _authService: AuthService) {
-    console.log("Injecting login component");
-  }
+  constructor(private _formBuilder: FormBuilder, private _authService: AuthService) {}
 
   ngOnInit() {
     this.form = this._formBuilder

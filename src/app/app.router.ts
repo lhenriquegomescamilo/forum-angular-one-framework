@@ -3,6 +3,7 @@ import { ModuleWithProviders } from "@angular/core";
 import { AuthGuardianService } from "app/auth/auth-guardian.service";
 import { LoginComponent } from "app/login/login.component";
 import { HomeComponent } from "app/home/home.component";
+import { NotFoundComponent } from "app/not-found/not-found.component";
 
 const _APP_ROUTES: Routes = [
     { path: "login", component: LoginComponent },
@@ -12,7 +13,8 @@ const _APP_ROUTES: Routes = [
         loadChildren: "app/contacts/contacts.module#ContactsModule",
         canActivate: [AuthGuardianService]
     },
-      { path: '**', redirectTo: 'not-found' }
+    { path: "not-found", component: NotFoundComponent },
+    { path: '**', redirectTo: 'not-found' }
 ];
 
 export const APP_ROUTING: ModuleWithProviders = RouterModule.forRoot(_APP_ROUTES);

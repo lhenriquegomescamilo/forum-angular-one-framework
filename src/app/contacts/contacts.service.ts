@@ -10,32 +10,32 @@ import 'rxjs/add/operator/map';
 export class ContactsService {
 
   private serviceBase: string = "http://localhost:3000/v1"
-  private contactsURL: string = this.serviceBase + "/contacts";
-  constructor(private http: Http) { }
+  private contactsURL: string = this.serviceBase + "/contacts/";
+  constructor(private _http: Http) { }
 
   save(contact: ContactsModel): Observable<ContactsModel> {
-    return this.http.post(this.contactsURL, contact)
+    return this._http.post(this.contactsURL, contact)
       .map((response) => {
         return response.json();
       });
   }
 
   update(contact: ContactsModel): Observable<ContactsModel> {
-    return this.http.put(this.contactsURL + contact.id, { name: contact.name, phoneNumber: contact.phoneNumber})
+    return this._http.put(this.contactsURL + contact.id, { name: contact.name, phoneNumber: contact.phoneNumber })
       .map((response) => {
         return response.json();
       });
   }
 
   delete(contact: ContactsModel): Observable<ContactsModel> {
-    return this.http.delete(this.contactsURL + contact.id)
-      .map((response) => {
+    return this._http.delete(this.contactsURL + contact.id)
+      .map((response: Response) => {
         return response.json();
       });
   }
 
   getAll(): Observable<[ContactsModel]> {
-    return this.http.get(this.contactsURL).map((response) => {
+    return this._http.get(this.contactsURL).map((response: Response) => {
       return response.json();
     });
   }

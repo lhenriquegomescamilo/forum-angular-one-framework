@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactBaseComponent implements OnInit {
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
   }

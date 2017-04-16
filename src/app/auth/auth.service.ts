@@ -26,7 +26,6 @@ export class AuthService {
     }
   }
   private _showEventEmitter(canShow: boolean): void {
-    console.log("EMIT", canShow)
     this._showNavBar.emit(canShow);
   }
   private _setUserOnSession(user: User): void {

@@ -12,12 +12,14 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { HomeComponent } from './home/home.component';
 import { HomeModule } from "app/home/home.module";
 import { NotFoundComponent } from './not-found/not-found.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NotFoundComponent,
+    FooterComponent,
 
   ],
   imports: [

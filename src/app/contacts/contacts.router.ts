@@ -7,7 +7,7 @@ import { ContactsNewComponent } from "app/contacts/contacts-new/contacts-new.com
 const _CONTACT_ROUTES: Routes = [
     {
         path: "", component: ContactBaseComponent, children: [
-            { path: "", component: ContactListComponent },
+            { path: "", component: ContactsShowComponent },
             { path: "new", component: ContactsNewComponent }
         ]
     }
