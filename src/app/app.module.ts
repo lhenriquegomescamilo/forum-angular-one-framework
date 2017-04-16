@@ -9,17 +9,23 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuardianService } from "app/auth/auth-guardian.service";
 import { AuthService } from "app/auth/auth.service";
 import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { HomeComponent } from './home/home.component';
+import { HomeModule } from "app/home/home.module";
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    NotFoundComponent,
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    HomeModule,
     APP_ROUTING
   ],
   providers: [CookieService,AuthGuardianService, AuthService],
