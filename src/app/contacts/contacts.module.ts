@@ -32,7 +32,5 @@ import { HttpModule, JsonpModule } from '@angular/http';
   providers: [ContactsService]
 })
 export class ContactsModule { 
-  constructor(){
-    console.log("calling this module");
-  }
+  constructor(){}
 }

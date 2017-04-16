@@ -1,8 +1,8 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Router } from "@angular/router";
-import { User } from "app/auth/user.interface";
 import { CookieService } from "angular2-cookie/services/cookies.service";
 import * as _ from "lodash";
+import { ContactsModel } from "app/models/contacts.model";
 
 @Injectable()
 export class AuthService {
@@ -14,10 +14,10 @@ export class AuthService {
 
   constructor(private _router: Router, private _cookierService: CookieService) { }
 
-  signin(user: User): void {
-    if ((user.email === 'user@email.com' || user.email === 'usuario@email.com')
-      && user.password === '123456') {
-      this._setUserOnSession(user);
+  signin(contact: ContactsModel): void {
+    if ((contact.email === 'user@email.com' || contact.email === 'usuario@email.com')
+      && contact.password === '123456') {
+      this._setUserOnSession(contact);
       this._showEventEmitter(true);
       this._authenticated = true;
       this._router.navigate(["/"]);
@@ -28,8 +28,8 @@ export class AuthService {
   private _showEventEmitter(canShow: boolean): void {
     this._showNavBar.emit(canShow);
   }
-  private _setUserOnSession(user: User): void {
-    this._cookierService.putObject(AuthService._USER_FROM_SESSION, user);
+  private _setUserOnSession(contact: ContactsModel): void {
+    this._cookierService.putObject(AuthService._USER_FROM_SESSION, contact);
   }
 
   public get authenticated(): boolean {
@@ -39,7 +39,7 @@ export class AuthService {
     return this._showNavBar;
   }
   public get haveUserOnSession(): boolean {
-    let userOnSession: User = this._cookierService.getObject(AuthService._USER_FROM_SESSION) as User;
+    let userOnSession: ContactsModel = this._cookierService.getObject(AuthService._USER_FROM_SESSION) as ContactsModel;
     return !_.isEmpty(userOnSession);
   }
 
