@@ -13,7 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { HomeModule } from "app/home/home.module";
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FooterComponent } from './footer/footer.component';
-
+import { ContactsService } from './contacts/contacts.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +30,7 @@ import { FooterComponent } from './footer/footer.component';
     HomeModule,
     APP_ROUTING
   ],
-  providers: [CookieService,AuthGuardianService, AuthService],
+  providers: [CookieService,AuthGuardianService, AuthService, ContactsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
