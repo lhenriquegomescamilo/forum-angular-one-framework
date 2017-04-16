@@ -5,10 +5,13 @@ import { ContactsEditComponent } from './contacts-edit/contacts-edit.component';
 import { ContactsShowComponent } from './contacts-show/contacts-show.component';
 import { ContactsService } from "app/contacts/contacts.service";
 import { CONTACT_ROUTING } from "app/contacts/contacts.router";
+import { HttpModule, JsonpModule } from '@angular/http';
 
 @NgModule({
   imports: [
     CommonModule,
+    HttpModule,
+    JsonpModule,
     CONTACT_ROUTING
   ],
   declarations: [ContactsNewComponent, ContactsEditComponent, ContactsShowComponent],
