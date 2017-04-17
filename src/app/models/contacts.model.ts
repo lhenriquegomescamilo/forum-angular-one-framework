@@ -1,4 +1,5 @@
 export class ContactsModel {
+    private static count: number = 0;
     private _id: number;
     private _name: string;
     private _email: string;
@@ -6,10 +7,12 @@ export class ContactsModel {
     private _phoneNumber: string;
 
     constructor(email: string, password: string, name: string = "", phoneNumber: string = "") {
+        this.id = ContactsModel.count;
         this.email = email;
         this.password = password;
         this.name = name;
         this.phoneNumber = phoneNumber;
+        ContactsModel.count++;
 
     }
     public get id(): number {
