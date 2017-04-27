@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ContactsModel } from "app/models/contacts.model";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-contacts-show',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactsShowComponent implements OnInit {
 
-  constructor() { }
+  private _selectContact: ContactsModel;
+  constructor(private _router: Router, private _activedRouter: ActivatedRoute) { }
 
   ngOnInit() {
+    this._activedRouter
+      .params
+      .subscribe((params: any) => {
+        console.log(params["id"]);
+      });
   }
 
+  get selectContact(): ContactsModel {
+    return this._selectContact;
+  }
 }

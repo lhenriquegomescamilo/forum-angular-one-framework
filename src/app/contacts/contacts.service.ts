@@ -6,12 +6,12 @@ import { ContactSession } from "../models/contacts-session.model";
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import { BASE_URL } from "app/base-url";
 
 @Injectable()
 export class ContactsService {
 
-  private serviceBase: string = "http://localhost:3000/v1"
-  private contactsURL: string = this.serviceBase + "/contacts/";
+  private contactsURL: string = BASE_URL+ "/contacts/";
   constructor(private _http: Http) { }
 
   save(contact: ContactsModel): Observable<ContactsModel> {
