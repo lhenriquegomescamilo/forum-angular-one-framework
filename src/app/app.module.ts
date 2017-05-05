@@ -30,7 +30,7 @@ import { ContactsService } from './contacts/contacts.service';
     HomeModule,
     APP_ROUTING
   ],
-  providers: [CookieService,AuthGuardianService, AuthService, ContactsService],
+  providers: [CookieService, AuthGuardianService, AuthService, ContactsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

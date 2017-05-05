@@ -7,5 +7,6 @@ export class ContactSession {
     constructor(authToken: string, contact: ContactsModel) {
         this.authToken = authToken;
         this.currentContact = contact;
+        
     }
 }

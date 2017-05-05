@@ -11,7 +11,7 @@ export class AuthGuardianService implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot, 
     state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
-      if(this._authService.authenticated && this._authService.haveUserOnSession){
+      if(this._authService.haveUserOnSession){
         return true;
       }
       this._router.navigate(["/login"]);

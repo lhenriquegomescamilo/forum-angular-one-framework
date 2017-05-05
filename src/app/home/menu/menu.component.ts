@@ -10,7 +10,7 @@ export class MenuComponent implements OnInit {
 
   private showNavBar: boolean = false;
 
-  constructor(private _authService: AuthService) {}
+  constructor(private _authService: AuthService) { }
 
   ngOnInit() {
     console.log()
@@ -24,7 +24,7 @@ export class MenuComponent implements OnInit {
   }
 
   isAuth(): boolean {
-    return this._authService.authenticated;
+    return this._authService.haveUserOnSession;
   }
   onLogout(): void {
     this._authService.logout();
