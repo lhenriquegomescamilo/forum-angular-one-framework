@@ -22,17 +22,31 @@ export class ContactsService {
   }
 
   update(contact: ContactsModel): Observable<ContactsModel> {
-    return this._http.put(this.contactsURL + contact.id, { name: contact.name, phoneNumber: contact.phoneNumber })
+    let authToken = this._authService.currentContactSessionToken;
+    if (authToken) {
+      let headers: Headers = new Headers({ Authorization: 'Bearer ' + authToken });
+      return this._http.put(this.contactsURL + contact.id, { name: contact.name, phoneNumber: contact.phoneNumber }, { headers: headers })
       .map((response) => {
         return response.json();
       });
+    } else {
+      return Observable.throw(new Error('Not authenticated'));
+    }
+    
   }
 
   delete(contact: ContactsModel): Observable<ContactsModel> {
-    return this._http.delete(this.contactsURL + contact.id)
+    let authToken = this._authService.currentContactSessionToken;
+    if (authToken) {
+      let headers: Headers = new Headers({ Authorization: 'Bearer ' + authToken });
+      return this._http.delete(this.contactsURL + contact.id, { headers: headers })
       .map((response: Response) => {
         return response.json();
       });
+    } else {
+      return Observable.throw(new Error('Not authenticated'));
+    }
+    
   }
 
   getAll(): Observable<[ContactsModel]> {
