@@ -54,11 +54,16 @@ export class AuthService {
   }
 
   public get haveUserOnSession(): boolean {
-    return !_.isEmpty(this.contactSession);
+    return !_.isEmpty(this.currentContactSession);
   }
 
-  public get contactSession(): ContactSession {
+  public get currentContactSession(): ContactSession {
     return this._cookierService.getObject(AuthService._USER_FROM_SESSION) as ContactSession;
+  }
+
+  public get currentContactSessionToken(): string {
+    let currentSession: ContactSession = this.currentContactSession;
+    return (currentSession) ?currentSession.authToken : null;
   }
 
   public logout(): void {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactsModule } from "app/contacts/contacts.module";
 import { ContactsModel } from "app/models/contacts.model";
-
+import { ContactsService } from 'app/contacts/contacts.service';
 @Component({
   selector: 'app-contact-list',
   templateUrl: './contact-list.component.html',
@@ -9,23 +9,23 @@ import { ContactsModel } from "app/models/contacts.model";
 })
 export class ContactListComponent implements OnInit {
 
-  
-  constructor() { }
+  private _contacts: ContactsModel[] = []
+
+  constructor(private _contactService: ContactsService) { }
 
   ngOnInit() {
+    this._contactService.getAll().subscribe((contacts) => {
+      this.contacts = contacts;
+    }, error => {
+      //TODO: Handle error
+    })
   }
 
   get contacts(): ContactsModel[]{
-    return [
-      new ContactsModel("aaa@aaa.com.br","","AAAA","8888"),
-      new ContactsModel("aaa@aaa.com.br","","AAAA","8888"),
-      new ContactsModel("bb@aaa.com.br","","AAAA","8888"),
-      new ContactsModel("ccc@aaa.com.br","","AAAA","8888"),
-      new ContactsModel("ddd@aaa.com.br","","AAAA","8888"),
-      new ContactsModel("ggg@aaa.com.br","","AAAA","8888"),
-      new ContactsModel("fff@aaa.com.br","","AAAA","8888"),
-      new ContactsModel("aaa@aaa.com.br","","AAAA","8888")
-    ]
+    return this._contacts;
   }
 
+  set contacts(value: ContactsModel[]) {
+    this._contacts = value;
+  }
 }
