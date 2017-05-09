@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactsModel } from "app/models/contacts.model";
 import { Router, ActivatedRoute } from "@angular/router";
+import { ContactsService } from "app/contacts/contacts.service";
 
 @Component({
   selector: 'app-contacts-show',
@@ -10,17 +11,31 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class ContactsShowComponent implements OnInit {
 
   private _selectContact: ContactsModel;
-  constructor(private _router: Router, private _activedRouter: ActivatedRoute) { }
+  constructor(private _router: Router, private _activedRouter: ActivatedRoute, private _contactService: ContactsService) { }
 
   ngOnInit() {
     this._activedRouter
       .params
       .subscribe((params: any) => {
-        console.log(params["id"]);
+        this._contactService.contactById(Number(params["id"]))
+        .subscribe((contact) => {
+          if (contact) {
+            this.selectContact = contact;
+          }
+        }, error => {
+          console.log(error);
+
+          //TODO: handle error
+        });
+
       });
   }
 
   get selectContact(): ContactsModel {
     return this._selectContact;
+  }
+
+  set selectContact(value: ContactsModel) {
+    this._selectContact = value;
   }
 }

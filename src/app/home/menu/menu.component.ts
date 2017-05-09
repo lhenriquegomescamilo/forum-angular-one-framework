@@ -16,7 +16,6 @@ export class MenuComponent implements OnInit {
     this._authService
       .showNavBar
       .subscribe((canShow: boolean) => {
-        console.log(canShow);
         if (canShow !== null) {
           this._showNavBar = canShow;
         }
