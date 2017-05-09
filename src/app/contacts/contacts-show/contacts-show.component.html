@@ -2,12 +2,12 @@
   <div class="col s12">
     <div class="card-panel">
       <div class="card-stacked">
-        <div class="card-content">
+        <div *ngIf="selectContact" class="card-content">
           <p>Contact details:</p>
-          <p>#: </p>
-          <p>Name: </p>
-          <p>Email: </p>
-          <p>Phone: </p>
+          <p>#: {{selectContact.id}}</p>
+          <p>Name: {{selectContact.name}}</p>
+          <p>Email: {{selectContact.email}} </p>
+          <p>Phone: {{selectContact.phoneNumber}}</p>
         </div>
         <div class="card-action">
           <a class="waves-effect waves-light btn"

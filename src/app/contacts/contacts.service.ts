@@ -7,6 +7,7 @@ import { AuthService } from '../auth/auth.service';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { BASE_URL } from "app/base-url";
+import * as _ from "lodash";
 
 @Injectable()
 export class ContactsService {
@@ -46,7 +47,19 @@ export class ContactsService {
     } else {
       return Observable.throw(new Error('Not authenticated'));
     }
-    
+  }
+
+  contactById(id: number): Observable<ContactsModel> {
+    let authToken = this._authService.currentContactSessionToken;
+    if (authToken) {
+      let headers: Headers = new Headers({ Authorization: 'Bearer ' + authToken });
+      return this._http.get(this.contactsURL + String(id), { headers: headers })
+      .map((response: Response) => {
+        return (_.isEmpty(response.json())) ? null : response.json();
+      });
+    } else {
+      return Observable.throw(new Error('Not authenticated'));
+    }
   }
 
   getAll(): Observable<[ContactsModel]> {
