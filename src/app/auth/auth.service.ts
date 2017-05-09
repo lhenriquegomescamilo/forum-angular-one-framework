@@ -54,6 +54,7 @@ export class AuthService {
   }
 
   public get haveUserOnSession(): boolean {
+    this._showEventEmitter(true);
     return !_.isEmpty(this.currentContactSession);
   }
 
@@ -63,7 +64,7 @@ export class AuthService {
 
   public get currentContactSessionToken(): string {
     let currentSession: ContactSession = this.currentContactSession;
-    return (currentSession) ?currentSession.authToken : null;
+    return (currentSession) ? currentSession.authToken : null;
   }
 
   public logout(): void {

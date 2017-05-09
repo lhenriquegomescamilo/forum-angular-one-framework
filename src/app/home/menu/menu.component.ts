@@ -8,17 +8,17 @@ import * as _ from "lodash";
 })
 export class MenuComponent implements OnInit {
 
-  private showNavBar: boolean = false;
+  private _showNavBar: boolean = false;
 
   constructor(private _authService: AuthService) { }
 
   ngOnInit() {
-    console.log()
     this._authService
       .showNavBar
       .subscribe((canShow: boolean) => {
+        console.log(canShow);
         if (canShow !== null) {
-          this.showNavBar = canShow;
+          this._showNavBar = canShow;
         }
       })
   }
@@ -26,6 +26,11 @@ export class MenuComponent implements OnInit {
   isAuth(): boolean {
     return this._authService.haveUserOnSession;
   }
+
+  get showNavBar(): boolean {
+    return this._showNavBar;
+  }
+
   onLogout(): void {
     this._authService.logout();
   }
