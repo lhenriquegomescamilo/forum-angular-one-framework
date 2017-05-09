@@ -6,15 +6,13 @@ export class ContactsModel {
     private _password: string;
     private _phoneNumber: string;
 
-    constructor(email: string, password: string, name: string = "", phoneNumber: string = "") {
-        this.id = ContactsModel.count;
+    constructor(email?: string, password?: string, name: string = "", phoneNumber: string = "") {
         this.email = email;
         this.password = password;
         this.name = name;
         this.phoneNumber = phoneNumber;
-        ContactsModel.count++;
-
     }
+
     public get id(): number {
         return this._id;
     }
