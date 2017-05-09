@@ -15,7 +15,7 @@ import { BasicValidators } from "app/contacts/utils/basic-validators";
 export class ContactsEditComponent implements OnInit, OnDestroy {
   private _subscription: Subscription;
   private _isNew: boolean = false;
-  private _contactIndex: number;
+  private _contactId: number;
   private _title: string = "";
   private _contact: ContactsModel;
   form: FormGroup;
@@ -33,9 +33,9 @@ export class ContactsEditComponent implements OnInit, OnDestroy {
       .subscribe((params: any) => {
         if (params.hasOwnProperty("id")) {
           this._isNew = false;
-          this._contactIndex = params["id"];
+          this._contactId = _.toNumber(params["id"]);
           this._contactService
-            .contactById(this._contactIndex)
+            .contactById(this._contactId)
             .subscribe(data => this._contact = data);
           this._title = "Edição de contatos";
         } else {
@@ -50,7 +50,7 @@ export class ContactsEditComponent implements OnInit, OnDestroy {
   _initForm() {
     this.form = this._formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, BasicValidators.email]],
+      email: ['', [Validators.required, BasicValidators.email]]
     });
   }
 
@@ -61,8 +61,13 @@ export class ContactsEditComponent implements OnInit, OnDestroy {
   set contact(contact: ContactsModel) {
     this._contact = contact;
   }
-  ngOnDestroy(): void {
 
+  ngOnDestroy(): void {
+    this._subscription.unsubscribe();
+  }
+
+  get isNew() {
+    return this._isNew;
   }
 
 }
