@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ContactsModel } from "app/models/contacts.model";
 import { Router, ActivatedRoute } from "@angular/router";
 import { ContactsService } from "app/contacts/contacts.service";
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-contacts-show',
@@ -17,16 +18,18 @@ export class ContactsShowComponent implements OnInit {
     this._activedRouter
       .params
       .subscribe((params: any) => {
-        this._contactService.contactById(Number(params["id"]))
-        .subscribe((contact) => {
-          if (contact) {
-            this.selectContact = contact;
-          }
-        }, error => {
-          console.log(error);
+        console.log(params);
+        this._contactService
+          .contactById(_.toNumber(params["id"]))
+          .subscribe((contact) => {
+            if (contact) {
+              this.selectContact = contact;
+            }
+          }, error => {
+            console.log(error);
 
-          //TODO: handle error
-        });
+            //TODO: handle error
+          });
 
       });
   }

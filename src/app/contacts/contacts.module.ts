@@ -10,6 +10,7 @@ import { ContactListComponent } from './contact-list/contact-list.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { HttpModule, JsonpModule } from '@angular/http';
+import { ContactsStartComponent } from './contacts-start/contacts-start.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { HttpModule, JsonpModule } from '@angular/http';
     ContactsEditComponent,
     ContactsShowComponent,
     ContactBaseComponent,
-    ContactListComponent
+    ContactListComponent,
+    ContactsStartComponent
   ],
   providers: [ContactsService]
 })
