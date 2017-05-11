@@ -19,14 +19,14 @@
         </label>
       </div>
     </div>
-    <div formGroupName="phone">
+    <div formGroupName="phoneNumber">
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">Telefone</i>
           <input id="phoneNumber" type="text" class="validate" [(ngModel)]="contact.phoneNumber" formControlName="phoneNumber"
-            [class.invalid]="form.controls['phone'].controls['phoneNumber'].touched
-                  && !form.controls['phone'].controls['phoneNumber'].valid">
-          <label for="phoneNumber" [class.active]="contact.phone.phoneNumber" data-error="Invalid Phone">
+            [class.invalid]="form.controls['phoneNumber'].touched
+                  && !form.controls['phoneNumber'].valid">
+          <label for="phoneNumber" [class.active]="contact.phoneNumber" data-error="Invalid Phone">
             Phone
           </label>
         </div>

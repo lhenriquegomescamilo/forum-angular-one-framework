@@ -53,7 +53,8 @@ export class ContactsEditComponent implements OnInit, OnDestroy {
   _initForm() {
     this.form = this._formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, BasicValidators.email]]
+      email: ['', [Validators.required, BasicValidators.email]],
+      phoneNumber: this._formBuilder.group({ phoneNumber: [] })
     });
   }
 
@@ -71,6 +72,26 @@ export class ContactsEditComponent implements OnInit, OnDestroy {
 
   get isNew() {
     return this._isNew;
+  }
+
+  onSave(): void {
+    let contactOfPage = this.form.value;
+    let resultOfServer: Observable<ContactsModel>;
+    if (this.isNew) {
+      resultOfServer = this._contactService.save(contactOfPage);
+    } else {
+      resultOfServer = this._contactService.update(contactOfPage);
+    }
+    this.form.reset();
+    resultOfServer.subscribe(data => this.navigateBack(), error => alert('An error occurred'))
+  }
+
+  private navigateBack() {
+    this._router.navigate(['/contacts']);
+  }
+
+  onCancel() {
+    this.navigateBack();
   }
 
 }
