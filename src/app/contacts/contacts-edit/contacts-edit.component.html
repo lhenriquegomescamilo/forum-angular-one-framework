@@ -19,12 +19,20 @@
         </label>
       </div>
     </div>
+    <div class="row">
+      <div class="input-field cols12">
+        <i class="material-icons prefix">Senha</i>
+        <input id="password" type="password" class="validate" [(ngModel)]="contact.password" formControlName="password" [class.invalid]="form.controls['password'].touched && !form.controls['password'].valid">
+        <label for="password" [class.active]="contact.password" data-error="Senha incorreta">
+          Senha
+        </label>
+      </div>
+    </div>
     <div formGroupName="phoneNumber">
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix">Telefone</i>
-          <input id="phoneNumber" type="text" class="validate" [(ngModel)]="contact.phoneNumber" formControlName="phoneNumber"
-            [class.invalid]="form.controls['phoneNumber'].touched
+          <input id="phoneNumber" type="text" class="validate" [(ngModel)]="contact.phoneNumber" formControlName="phoneNumber" [class.invalid]="form.controls['phoneNumber'].touched
                   && !form.controls['phoneNumber'].valid">
           <label for="phoneNumber" [class.active]="contact.phoneNumber" data-error="Invalid Phone">
             Phone

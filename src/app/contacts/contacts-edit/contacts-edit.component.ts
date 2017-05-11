@@ -53,8 +53,10 @@ export class ContactsEditComponent implements OnInit, OnDestroy {
   _initForm() {
     this.form = this._formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
+      password: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, BasicValidators.email]],
-      phoneNumber: this._formBuilder.group({ phoneNumber: [] })
+      phoneNumber: this._formBuilder.group({ phoneNumber: [] }),
+
     });
   }
 
