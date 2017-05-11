@@ -55,7 +55,7 @@ export class ContactsEditComponent implements OnInit, OnDestroy {
       name: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, BasicValidators.email]],
-      phoneNumber: ['', [Validators.required, Validators.minLength(3)]],
+      phoneNumber: ['', [Validators.required, Validators.pattern('\\d{8,15}')]],
 
     });
   }

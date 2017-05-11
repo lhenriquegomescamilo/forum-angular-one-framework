@@ -18,7 +18,6 @@ export class ContactsShowComponent implements OnInit {
     this._activedRouter
       .params
       .subscribe((params: any) => {
-        console.log(params);
         this._contactService
           .contactById(_.toNumber(params["id"]))
           .subscribe((contact) => {
@@ -27,7 +26,6 @@ export class ContactsShowComponent implements OnInit {
             }
           }, error => {
             console.log(error);
-
             //TODO: handle error
           });
 
