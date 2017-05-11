@@ -12,15 +12,16 @@ import * as _ from 'lodash';
 export class ContactsShowComponent implements OnInit {
 
   private _selectContact: ContactsModel;
+  private _contactId: number;
   constructor(private _router: Router, private _activedRouter: ActivatedRoute, private _contactService: ContactsService) { }
 
   ngOnInit() {
     this._activedRouter
       .params
       .subscribe((params: any) => {
-        console.log(params);
+        this._contactId = _.toNumber(params["id"]);
         this._contactService
-          .contactById(_.toNumber(params["id"]))
+          .contactById(this._contactId)
           .subscribe((contact) => {
             if (contact) {
               this.selectContact = contact;
@@ -40,5 +41,18 @@ export class ContactsShowComponent implements OnInit {
 
   set selectContact(value: ContactsModel) {
     this._selectContact = value;
+  }
+
+  onDelete() {
+    let contact = new ContactsModel();
+    contact.id = this._contactId;
+    this._contactService.delete(contact)
+    .subscribe((deletedContact) => {
+      console.log(deletedContact);
+      this._router.navigate(['/contacts']);
+    }, error => {
+      console.error(error);
+      //TODO: handle delete error.
+    })
   }
 }
