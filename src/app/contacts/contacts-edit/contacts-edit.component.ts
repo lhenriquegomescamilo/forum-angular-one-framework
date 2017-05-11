@@ -26,7 +26,6 @@ export class ContactsEditComponent implements OnInit, OnDestroy {
     private _formBuilder: FormBuilder,
     private _contactService: ContactsService
   ) {
-    console.log("EDIT COMPONENT");
   }
 
   ngOnInit(): void {
@@ -79,10 +78,10 @@ export class ContactsEditComponent implements OnInit, OnDestroy {
   onSave(): void {
     let contactOfPage = this.form.value;
     let resultOfServer: Observable<ContactsModel>;
-    console.log(contactOfPage);
     if (this.isNew) {
       resultOfServer = this._contactService.save(contactOfPage);
     } else {
+      contactOfPage.id = this._contactId;
       resultOfServer = this._contactService.update(contactOfPage);
     }
     this.form.reset();

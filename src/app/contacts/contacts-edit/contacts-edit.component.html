@@ -33,6 +33,7 @@
           <i class="material-icons prefix">Telefone</i>
           <input id="phoneNumber" type="text" class="validate" [(ngModel)]="contact.phoneNumber" formControlName="phoneNumber" [class.invalid]="form.controls['phoneNumber'].touched
                   && !form.controls['phoneNumber'].valid">
+
           <label for="phoneNumber" [class.active]="contact.phoneNumber" data-error="Invalid Phone">
             Phone
           </label>
