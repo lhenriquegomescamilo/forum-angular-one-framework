@@ -6,7 +6,7 @@
         <i class="material-icons prefix">account_circle</i>
         <input id="name" type="text" class="validate" [(ngModel)]="contact.name" formControlName="name" [class.invalid]="form.controls['name'].touched && !form.controls['name'].valid">
         <label for="name" [class.active]="contact.name" data-error="You need to enter at least 3 chars">
-          Name
+          Nome
         </label>
       </div>
     </div>
@@ -22,7 +22,7 @@
     <div formGroupName="phone">
       <div class="row">
         <div class="input-field col s12">
-          <i class="material-icons prefix">phone</i>
+          <i class="material-icons prefix">Telefone</i>
           <input id="phoneNumber" type="text" class="validate" [(ngModel)]="contact.phoneNumber" formControlName="phoneNumber"
             [class.invalid]="form.controls['phone'].controls['phoneNumber'].touched
                   && !form.controls['phone'].controls['phoneNumber'].valid">

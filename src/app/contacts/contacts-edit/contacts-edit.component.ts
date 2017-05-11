@@ -25,9 +25,12 @@ export class ContactsEditComponent implements OnInit, OnDestroy {
     private _activatedRouter: ActivatedRoute,
     private _formBuilder: FormBuilder,
     private _contactService: ContactsService
-  ) { }
+  ) {
+    console.log("EDIT COMPONENT");
+  }
 
   ngOnInit(): void {
+
     this._subscription = this._activatedRouter
       .params
       .subscribe((params: any) => {
