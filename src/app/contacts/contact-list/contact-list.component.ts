@@ -15,14 +15,18 @@ export class ContactListComponent implements OnInit {
 
   ngOnInit() {
     console.log('LIST');
-    this._contactService.getAll().subscribe((contacts) => {
-      this.contacts = contacts;
-    }, error => {
-      //TODO: Handle error
-    })
+    this._contactService
+      .getAll()
+      .subscribe((contacts) => this.contacts = contacts, error => {
+        //TODO: Handle error
+      });
+
+    this._contactService
+      .contactsChanged
+      .subscribe((observable: any) => observable.subscribe(data => this.contacts = data));
   }
 
-  get contacts(): ContactsModel[]{
+  get contacts(): ContactsModel[] {
     return this._contacts;
   }
 
