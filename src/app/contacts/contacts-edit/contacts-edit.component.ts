@@ -55,7 +55,7 @@ export class ContactsEditComponent implements OnInit, OnDestroy {
       name: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, BasicValidators.email]],
-      phoneNumber: this._formBuilder.group({ phoneNumber: [] }),
+      phoneNumber: ['', [Validators.required, Validators.pattern('\\d{8,15}')]],
 
     });
   }
@@ -79,6 +79,7 @@ export class ContactsEditComponent implements OnInit, OnDestroy {
   onSave(): void {
     let contactOfPage = this.form.value;
     let resultOfServer: Observable<ContactsModel>;
+    console.log(contactOfPage);
     if (this.isNew) {
       resultOfServer = this._contactService.save(contactOfPage);
     } else {
