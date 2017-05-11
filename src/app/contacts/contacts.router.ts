@@ -12,7 +12,7 @@ const _CONTACT_ROUTES: Routes = [
             { path: "", component: ContactsStartComponent },
             { path: "new", component: ContactsEditComponent },
             { path: ":id", component: ContactsShowComponent },
-            { path: "edit/:id", component: ContactsEditComponent }
+            { path: ":id/edit", component: ContactsEditComponent }
 
 
         ]

@@ -83,6 +83,7 @@ export class ContactsEditComponent implements OnInit, OnDestroy {
     if (this.isNew) {
       resultOfServer = this._contactService.save(contactOfPage);
     } else {
+      contactOfPage.id = this._contactId;
       resultOfServer = this._contactService.update(contactOfPage);
     }
     this.form.reset();
