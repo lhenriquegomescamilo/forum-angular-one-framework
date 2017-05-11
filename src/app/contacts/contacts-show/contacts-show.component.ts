@@ -13,14 +13,16 @@ import { Subscription } from "rxjs/Rx";
 export class ContactsShowComponent implements OnInit, OnDestroy {
   private _selectContact: ContactsModel;
   private _subscription: Subscription;
+  private _contactId: number;
   constructor(private _router: Router, private _activedRouter: ActivatedRoute, private _contactService: ContactsService) { }
 
   ngOnInit() {
     this._subscription = this._activedRouter
       .params
       .subscribe((params: any) => {
+        this._contactId = _.toNumber(params["id"]);
         this._contactService
-          .contactById(_.toNumber(params["id"]))
+          .contactById(this._contactId)
           .subscribe((contact) => {
             if (contact) {
               this.selectContact = contact;
@@ -48,5 +50,18 @@ export class ContactsShowComponent implements OnInit, OnDestroy {
 
   set selectContact(value: ContactsModel) {
     this._selectContact = value;
+  }
+
+  onDelete() {
+    let contact = new ContactsModel();
+    contact.id = this._contactId;
+    this._contactService.delete(contact)
+    .subscribe((deletedContact) => {
+      console.log(deletedContact);
+      this._router.navigate(['/contacts']);
+    }, error => {
+      console.error(error);
+      //TODO: handle delete error.
+    })
   }
 }
